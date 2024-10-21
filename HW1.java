@@ -12,7 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class hw1 extends Application {
+public class Buyer extends Application {
 
     private ObservableList<Book> cartItems = FXCollections.observableArrayList();
     private Label cartContentsLabel;
@@ -190,16 +190,10 @@ public class hw1 extends Application {
         mainLayout.setLeft(filterBox);
         mainLayout.setCenter(bookDetailsBox);
         mainLayout.setRight(cartBox);
-
-        // Set the scene and show the stage
         Scene scene = new Scene(mainLayout, 1000, 600);
         primaryStage.setScene(scene);
         primaryStage.show();
-
-        // Event handling
-        // Update cart label
         viewCartButton.setOnAction(event -> {
-            // Show cart contents in an alert
             StringBuilder cartInfo = new StringBuilder();
             double totalPrice = 0;
             for (Book b : cartItems) {
@@ -207,7 +201,6 @@ public class hw1 extends Application {
                 totalPrice += b.getPrice();
             }
             cartInfo.append("\nTotal Price: $").append(String.format("%.2f", totalPrice));
-
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Cart Contents");
             alert.setHeaderText("Your Cart");
@@ -216,7 +209,6 @@ public class hw1 extends Application {
         });
 
         checkoutButton.setOnAction(event -> {
-            // Process the transaction
             if (cartItems.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Checkout");
@@ -224,8 +216,6 @@ public class hw1 extends Application {
                 alert.setContentText("Your cart is empty.");
                 alert.showAndWait();
             } else {
-                // Send confirmation emails (not implemented)
-                // Mark books as sold (not implemented)
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Checkout");
                 alert.setHeaderText(null);
